@@ -1,8 +1,19 @@
+var fs = require('fs');
 var path = require('path');
-var callback = function (err, list) {
-		for (var i = 0; i < list.length; i++) {
-				if (path.extname(list[i]) === filter)
-						console.log(list[i]);
-		}
+
+module.exports = function (dir, filter, callback) {		
+	var ext = '.' + filter;
+	fs.readdir(dir, function (err, list) {
+		if (err) 
+			callback(err, null);
+		else {
+			var answer = [];
+			for (var i = 0; i < list.length; i++) {
+				if (path.extname(list[i]) === ext)
+					answer.push(list[i]);
+			}
+			callback(null, answer);
+		}	
+	});
 }
-module.exports = callback;
+ 
