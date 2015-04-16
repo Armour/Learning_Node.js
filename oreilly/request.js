@@ -6,7 +6,7 @@ var opts = {
 	port   : '8000',
 	path   : '/send',
 	method : 'POST',
-	header : {'content-type':'application/json'}
+	header : {'content-type':'application/x-www-form-urlencoded'}
 }
 
 var req = http.request(opts, function(res) {
@@ -18,6 +18,6 @@ var req = http.request(opts, function(res) {
 	res.on('end', function(){
 		assert.strictEqual(data, '{"status":"ok", "message":"Tweet received~"}')
 	})
-	req.write('{"tweet":"test"}');
+	req.write('tweet=test');
 	req.end();
 })
