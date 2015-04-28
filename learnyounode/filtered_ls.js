@@ -8,4 +8,3 @@ fs.readdir(file, function callback(err, list) {
 			console.log(list[i]);
 	}
 });
-
